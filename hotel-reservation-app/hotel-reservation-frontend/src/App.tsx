@@ -16,7 +16,16 @@ import LandingPage from "./pages/landing_page";
 import theme from "./theme";
 import ErrorPage from "./pages/error";
 
-function getMappedUser(userInfo: any): User {
+export default function App() {
+  const [signedIn, setSignedIn] = useState(false);
+  const [user, setUser] = useState<User>({
+  email: "",
+  id: "",
+  name: "",
+  mobileNumber: "",
+  });
+  const [isAuthLoading, setIsAuthLoading] = useState(false);
+  function getMappedUser(userInfo: any): User {
   return {
   email: userInfo?.email || "",
   id: userInfo?.sub || "",
@@ -50,11 +59,6 @@ function getMappedUser(userInfo: any): User {
   }
   setIsAuthLoading(false);
   }, []);
-   © 2024 WSO2 LLC.Commercial in Confidence / Confidential / Not for Redistribution
-  
-  if (isAuthLoading) {
-    return <div>User authenticating...</div>;
-  }
 
   return (
     <>
